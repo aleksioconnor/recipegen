@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useRef, useState} from 'react';
-import {TweenLite, Power2, TimelineLite} from "gsap/TweenMax";
+import {TweenLite} from "gsap/TweenMax";
 
 
 const QuestionView = ({currentQuestionIndex, setNextQuestion, questions}) => {
@@ -19,12 +19,12 @@ const QuestionView = ({currentQuestionIndex, setNextQuestion, questions}) => {
         tween.eventCallback("onComplete", setNextQuestion, [n])
     }
     const question = questions[currentQuestionIndex]
-    const buttons = question.answer_options.map((n) => <button className='question-button' onClick={()=>setNext(n)} key={n.answer_tag}>{n.answer_text}</button>)
+    const buttons = question.answer_options.map((n) => <button className='question-button' onClick={()=>setNext(n)} key={n.answer_id}>{n.answer_text}</button>)
 
     return (
         <div className='main-container'>
             <div ref={ref} className='question-contain'>
-                <h3>{question.question_text}</h3>
+                <h3 className='question-title'>{question.question_text}</h3>
                 <div className='question-button-container'>
                     {buttons}
                 </div>

@@ -1,3 +1,5 @@
+/* resets etc */
+
 body, html {
     padding: 0;
     margin: 0;
@@ -7,34 +9,12 @@ p {
     margin: 0;
 }
 
-.main-container {
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 50px;
-    text-align: center;
-    background-color: lightblue;
-    height: 100vh;
-    font-family: 'Roboto'
-}
+/* titles */
 
-button:focus {outline:0;}
-
-.start-button {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.question-button {
-    width: 100px;
-    height: 55px;
-    margin-bottom: 20px;
-}
-
-.question-contain {
-    opacity: 0;
+h5 {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -42,7 +22,7 @@ h1 {
     padding: 0;
     margin: 0;
     font-size: 25px;
-    margin-bottom: 20px;
+    padding-bottom: 50px;
 }
 
 h3 {
@@ -53,9 +33,110 @@ h3 {
     margin-bottom: 20px;
 }
 
+.question-title {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+
+
+/* contains all pages */
+
+.main-container {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+    background-color: #b2d9eb;
+    height: 100vh;
+    font-family: 'Roboto'
+}
+
+/* buttons */
+
+
+button:focus {outline:0;}
+
+button {
+    border-style: solid;
+    border-width: 0px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.diet-button-container {
+    margin: 0 auto;
+    max-width: 450px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+    margin-bottom: 50px;
+}
+
+.diet-button {
+    user-select: none;
+    background-color: #f3d36d;
+    width: 120px;
+    height: 50px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin: 5px;
+}
+
+.diet-button--selected {
+    background-color: #f2ba00;
+    width: 120px;
+    height: 50px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin: 5px;
+}
+
+.start-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: #ee936d;
+
+}
+
 .question-button-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    width: 270px;
+    padding: 5px;
+}
+
+.question-contain {
+    opacity: 0;
+}
+
+.question-button {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    background-color: #ee936d;
+    border-radius: 150px;
+    margin: 10px;
+}
+
+
+
+/* help page link */
+
+.help {
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+    cursor: pointer;
+    text-decoration: underline;
 }

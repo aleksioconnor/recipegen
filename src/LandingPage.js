@@ -1,6 +1,7 @@
 import React from 'react'
-import {TweenLite, Power2, TimelineLite} from "gsap/TweenMax";
+import {TweenLite} from "gsap/TweenMax";
 import {useState, useEffect, useRef } from 'react'
+import DietButtons from './DietButtons'
 
 const LandingPage = (props) => {
     const refButton = useRef(null);
@@ -8,6 +9,8 @@ const LandingPage = (props) => {
     const [anim, setAnim] = useState(null)
     const [buttonClicked, setButtonClicked] = useState(false)
     const isFirstRun = useRef(true);
+
+    const [helpActive, setHelpActive] = useState(false)
 
 
     useEffect(() => {
@@ -23,8 +26,15 @@ const LandingPage = (props) => {
 
     return (
         <div className='main-container'>
-           <h1 ref={refTitle} > Welcome to recipe generator! </h1>
-            <button className='start-button' ref={refButton} onClick={()=>setButtonClicked(true)}>Start</button>
+            { helpActive ? <div>help <button onClick={() => setHelpActive(false)}>Back</button></div> :
+            <div>
+            <h1 ref={refTitle} >Recipe generator! </h1>
+            <h5>Any preferences before we start?</h5>
+            <DietButtons selectedTags={props.selectedTags} setSelectedTags={props.setSelectedTags} tags={props.tags}/>
+                <button className='start-button' ref={refButton} onClick={()=>setButtonClicked(true)}>GO</button>
+                <div onClick={()=>setHelpActive(true)} className='help'>What is this?</div>
+            </div>
+            }
         </div>
     )
 }
