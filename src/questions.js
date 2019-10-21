@@ -1,139 +1,239 @@
-const questionAnswerPairs = 
+const questionAnswerPairs =
 [
-  {
-      question_id: 1,
-      question_text: "Which ingredient do you prefer?",
-      question_category: "ingredients",
-      next_question: 2,
+	{
+		category: "type",
+		questions: [
+			{
+	      question_id: 1,
+	      question_text: "Give me something...",
+	      answer_options: [
+	          { answer_text: "sweet",
+	            answer_id: 1,
+	            answer_tag_category: "type",
+	            answer_tag: "sweet"
+	          },
+	          { answer_text: "savory",
+	            answer_id: 2,
+	            answer_tag_category: "type",
+	            answer_tag: "savory"
+	          },
+	          { answer_text: "spicy",
+	            answer_id: 3,
+	            answer_tag_category: "type",
+	            answer_tag: "spicy"
+	          },
+	          { answer_text: "icy",
+	            answer_id: 4,
+	            answer_tag_category: "type",
+	            answer_tag: "icy"
+	          },
+	      ]
+  		}
+		],
+	},
+
+	{
+		category: "difficulty",
+		questions: [
+			{
+				question_id: 2,
+	      question_text: "My motto in the kitchen is...",
+	      answer_options: [
+	          { answer_text: "Go big or go home",
+	            answer_id: 1,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "challenging"
+	          },
+	          { answer_text: "Less is more",
+	            answer_id: 2,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "simple"
+	          },
+	          { answer_text: "A messy kitchen is a happy kitchen",
+	            answer_id: 3,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "time-consuming"
+	          },
+	          { answer_text: "Fake it till you make it",
+	            answer_id: 4,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "easy"
+	          },
+	      ]
+	    },
+	    {
+	    	question_id: 3,
+	      question_text: "Cooking is the best when...",
+	      answer_options: [
+	          { answer_text: "it’s quick and easy",
+	            answer_id: 1,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "easy"
+	          },
+	          { answer_text: "there is little to clean up",
+	            answer_id: 2,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "simple"
+	          },
+	          { answer_text: "it's challenging",
+	            answer_id: 3,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "time-consuming"
+	          },
+	          { answer_text: "Fake it till you make it",
+	            answer_id: 4,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "challenging"
+	          },
+	      ]
+	    },
+	    {
+	    	question_id: 4,
+	      question_text: "Who’s coming over?",
+	      question_category: "difficulty",
+	      next_question: 7,
+	      answer_options: [
+	          { answer_text: "The Queen",
+	            answer_id: 1,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "challenging"
+	          },
+	          { answer_text: "Winnie the Pooh",
+	            answer_id: 2,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "simple"
+	          },
+	          { answer_text: "Batman",
+	            answer_id: 3,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "easy"
+	          },
+	          { answer_text: "No one, I’m locking my door!",
+	            answer_id: 4,
+	            answer_tag_category: "difficulty",
+	            answer_tag: "time-consuming"
+	          },
+	      ]
+	    }
+		]
+	},
+
+{
+	category: "nutrition",
+	questions: [
+		{
+			question_id: 5,
+      question_text: "What do you crave?",
       answer_options: [
-          { answer_text: "Carrots",
+          { answer_text: "Food coma, here I come!",
             answer_id: 1,
-            answer_tag_category: "ingredient",
-            answer_tag: "carrot1",
-            next_question_category: "flavours"
+            answer_tag_category: "nutrition",
+            answer_tag: "unhealthy"
           },
-          { answer_text: "Apples",
+          { answer_text: "Something light",
             answer_id: 2,
-            answer_tag_category: "ingredient",
-            answer_tag: "apple",
-            next_question_category: "flavours"
+            answer_tag_category: "nutrition",
+            answer_tag: "healthy"
           },
-      ]
-  },
-  {
-      question_id: 2,
-      question_text: "What is your motto?2",
-      question_category: "random",
-      answer_options: [
-          { answer_text: "Motto 1",
+          { answer_text: "I don’t care, I’m hangry!",
             answer_id: 3,
-            answer_tag_category: "ingredient",
-            answer_tag: "carrot2",
-            next_question_category: "flavours"
+            answer_tag_category: "nutrition",
+            answer_tag: "unhealthy"
           },
-          { answer_text: "Motto 2",
+          { answer_text: "Surprise me!",
             answer_id: 4,
-            answer_tag_category: "ingredient",
-            answer_tag: "apple",
-            next_question_category: "flavours"
+            answer_tag_category: "nutrition",
+            answer_tag: "healthy"
           },
       ]
-  },
-  {
-      question_id: 3,
-      question_text: "What is your motto?3",
-      question_category: "random",
+		},
+		{
+			question_id: 6,
+      question_text: "A nutritious meal is…",
       answer_options: [
-          { answer_text: "Motto 1",
-            answer_id: 3,
-            answer_tag_category: "ingredient",
-            answer_tag: "carrot3",
-            next_question_category: "flavours"
+          { answer_text: "the best kind of meal!",
+            answer_id: 1,
+            answer_tag_category: "nutrition",
+            answer_tag: "healthy"
           },
-          { answer_text: "Motto 2",
+          { answer_text: "a necessary evil.",
+            answer_id: 2,
+            answer_tag_category: "nutrition",
+            answer_tag: "healthy"
+          },
+          { answer_text: "a bonus",
+            answer_id: 3,
+            answer_tag_category: "nutrition",
+            answer_tag: "unhealthy"
+          },
+          { answer_text: "Not an option",
             answer_id: 4,
-            answer_tag_category: "ingredient",
-            answer_tag: "apple",
-            next_question_category: "flavours"
+            answer_tag_category: "nutrition",
+            answer_tag: "unhealthy"
           },
       ]
-  },
-  {
-      question_id: 4,
-      question_text: "What is your motto?4",
-      question_category: "random",
+		}
+	]
+},
+
+{
+	category: "season",
+	questions: [
+		{
+			question_id: 7,
+      question_text: "I feel inspired by…",
       answer_options: [
-          { answer_text: "Motto 1",
-            answer_id: 3,
-            answer_tag_category: "ingredient",
-            answer_tag: "carrot4",
-            next_question_category: "flavours"
+          { answer_text: "autmn leaves",
+            answer_id: 1,
+            answer_tag_category: "season",
+            answer_tag: "autmn"
           },
-          { answer_text: "Motto 2",
+          { answer_text: "sunshine",
+            answer_id: 2,
+            answer_tag_category: "season",
+            answer_tag: "spring"
+          },
+          { answer_text: "the beach",
+            answer_id: 3,
+            answer_tag_category: "season",
+            answer_tag: "summer"
+          },
+          { answer_text: "friday nights",
             answer_id: 4,
-            answer_tag_category: "ingredient",
-            answer_tag: "apple",
-            next_question_category: "flavours"
+            answer_tag_category: "season",
+            answer_tag: "winter"
           },
       ]
-  },
-  {
-      question_id: 5,
-      question_text: "What is your motto?5",
-      question_category: "random",
+		},
+		{
+			question_id: 8,
+      question_text: "My secret ingredient is…",
       answer_options: [
-          { answer_text: "Motto 1",
-            answer_id: 3,
-            answer_tag_category: "ingredient",
-            answer_tag: "carrot5",
-            next_question_category: "flavours"
+          { answer_text: "love",
+            answer_id: 1,
+            answer_tag_category: "season",
+            answer_tag: "spring"
           },
-          { answer_text: "Motto 2",
+          { answer_text: "food delivery",
+            answer_id: 2,
+            answer_tag_category: "season",
+            answer_tag: "autumn"
+          },
+          { answer_text: "a secret",
+            answer_id: 3,
+            answer_tag_category: "season",
+            answer_tag: "summer"
+          },
+          { answer_text: "plenty of salt",
             answer_id: 4,
-            answer_tag_category: "ingredient",
-            answer_tag: "apple",
-            next_question_category: "flavours"
+            answer_tag_category: "season",
+            answer_tag: "winter"
           },
       ]
-  },
-  {
-      question_id: 6,
-      question_text: "What is your motto?6",
-      question_category: "random",
-      answer_options: [
-          { answer_text: "Motto 1",
-            answer_id: 3,
-            answer_tag_category: "ingredient",
-            answer_tag: "carrot6",
-            next_question_category: "flavours"
-          },
-          { answer_text: "Motto 2",
-            answer_id: 4,
-            answer_tag_category: "ingredient",
-            answer_tag: "apple",
-            next_question_category: "flavours"
-          },
-      ]
-  },
-  {
-      question_id: 6,
-      question_text: "What is your motto?6",
-      question_category: "random",
-      answer_options: [
-          { answer_text: "Motto 1",
-            answer_id: 3,
-            answer_tag_category: "ingredient",
-            answer_tag: "carrot7",
-            next_question_category: "flavours"
-          },
-          { answer_text: "Motto 2",
-            answer_id: 4,
-            answer_tag_category: "ingredient",
-            answer_tag: "apple",
-            next_question_category: "flavours"
-          },
-      ]
-  },
+		}
+	]
+}
 ]
+
 
 export default questionAnswerPairs
