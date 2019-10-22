@@ -114,7 +114,7 @@ const questionAnswerPairs =
 	            answer_tag: "time-consuming"
 	          },
 	      ]
-	    }
+	    },
 		]
 	},
 
@@ -228,6 +228,32 @@ const questionAnswerPairs =
             answer_id: 4,
             answer_tag_category: "season",
             answer_tag: "winter"
+          },
+      ]
+		},
+		{
+			question_id: 9,
+      question_text: "Today’s soundtrack is…",
+      answer_options: [
+          { answer_text: "Hakuna Matata",
+            answer_id: 1,
+            answer_tag_category: "season",
+            answer_tag: "summer"
+          },
+          { answer_text: "Don’t Stop Believing",
+            answer_id: 2,
+            answer_tag_category: "season",
+            answer_tag: "spring"
+          },
+          { answer_text: "Ice Ice Baby",
+            answer_id: 3,
+            answer_tag_category: "season",
+            answer_tag: "winter"
+          },
+          { answer_text: "All You Need Is Love",
+            answer_id: 4,
+            answer_tag_category: "season",
+            answer_tag: "autmun"
           },
       ]
 		}
