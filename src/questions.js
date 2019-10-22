@@ -12,10 +12,10 @@ const questionAnswerPairs =
 	            answer_tag_category: "type",
 	            answer_tag: "sweet"
 	          },
-	          { answer_text: "savory",
+	          { answer_text: "savoury",
 	            answer_id: 2,
 	            answer_tag_category: "type",
-	            answer_tag: "savory"
+	            answer_tag: "savoury"
 	          },
 	          { answer_text: "spicy",
 	            answer_id: 3,
