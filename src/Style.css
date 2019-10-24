@@ -3,6 +3,7 @@
 body, html {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 p {
@@ -38,18 +39,55 @@ h3 {
     font-weight: 300;
 }
 
-
+.backOfCard {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+}
 
 /* contains all pages */
 
 .main-container {
+    box-sizing: border-box;
     width: 100%;
+    max-width: 550px;
+    position: relative;
     margin: 0 auto;
     padding-top: 50px;
     text-align: center;
     background-color: #b2d9eb;
     height: 100vh;
     font-family: 'Roboto'
+}
+
+.main-container--landing-page {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 550px;
+}
+
+.logo {
+    width: 300px;
+    margin-bottom: 60px;
+}
+
+.card {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 550px;
+    position: absolute;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+    background-color: #b2d9eb;
+    height: 100vh;
+    font-family: 'Roboto'
+}
+
+.card-container {
+    position: relative;
 }
 
 /* buttons */
@@ -87,9 +125,10 @@ button {
 }
 
 .diet-button--selected {
-    background-color: #f2ba00;
+    background-color: #f3d36d;
     width: 120px;
     height: 50px;
+    border: 1px solid black;
     border-radius: 50px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -118,15 +157,28 @@ button {
 
 .question-contain {
     opacity: 0;
+    position: relative;
 }
 
 .question-button {
+    position:relative;
+    width: 100px;
+    height: 100px;
+    top: 600px;
+    margin-bottom: 20px;
+    background-color: #ee936d;
+    border-radius: 150px;
+    margin: 10px;
+}
+
+.question-button-nopointer {
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
     background-color: #ee936d;
     border-radius: 150px;
     margin: 10px;
+    cursor: default;
 }
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import {useState} from 'react'
-import {History} from 'stateshot'
 import QuestionView from './QuestionView'
 import _ from 'lodash'
 import questionAnswerPairs from './questions'
@@ -10,13 +9,10 @@ import 'normalize.css';
 import './Style.css'
 
 function App() {
-  
-  const state = { question: questionAnswerPairs[0], answers: [] }
-  const history = new History()
-  history.pushSync(state) 
 
   // Function generates sequence of questions. Returns array of objects.
   // Parameter (len) is how many questions will be in the resulting array.
+  // not being used
   const generateRandomSequenceOfQuestions = (len) => _.shuffle(questionAnswerPairs).slice(0, len)
 
   const drawQuestion = (len) => {
@@ -31,10 +27,11 @@ function App() {
   // How many questions are shown to the user
   const [thisManyQuestions] = useState(4)
 
-  const [questions, setQuestions] = useState(drawQuestion(4))
+  const [questions, setQuestions] = useState(drawQuestion(thisManyQuestions))
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [tags, setTags] = useState([])
   const [landingPage, setLandingPage] = useState(true)
+  const [clickBlock, setClickBlock] = useState(false)
 
   // used for diet seleciton in beginning
   const [selectedDietTags, setSelectedDietTags] = useState([])
@@ -48,6 +45,7 @@ function App() {
     setTags(newTags)
     // add answer tag to tag array
     setCurrentQuestionIndex(currentQuestionIndex + 1)
+    setClickBlock(false)
   }
 
   const restart = () => {
@@ -71,9 +69,9 @@ function App() {
 
   return (
     <div>
-        {landingPage ? <LandingPage start={start} selectedTags={selectedDietTags} setSelectedTags={setSelectedDietTags} tags={dietTags}/> : currentQuestionIndex > thisManyQuestions - 1 ? 
+        {landingPage ? <LandingPage clickBlock={clickBlock} setClickBlock={setClickBlock} start={start} selectedTags={selectedDietTags} setSelectedTags={setSelectedDietTags} tags={dietTags}/> : currentQuestionIndex > thisManyQuestions - 1 ? 
         <RecipeView restart={restart} tags={tags} goHome={() => restartAndLandingPage()}></RecipeView> : 
-        <QuestionView currentQuestionIndex={currentQuestionIndex} setNextQuestion={setNextQuestion} questions={questions}></QuestionView>}
+        <QuestionView clickBlock={clickBlock} setClickBlock={setClickBlock} currentQuestionIndex={currentQuestionIndex} setNextQuestion={setNextQuestion} questions={questions}></QuestionView>}
         
     </div>
   )
