@@ -1,6 +1,8 @@
 import React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import {TweenLite, Power2, TimelineMax, TimelineLite, Back} from "gsap/TweenMax";
+import _ from 'lodash'
+import {buttonIntro, resetButtonPositions, buttonClickAnimation} from './animations'
 
 
 const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBlock, setClickBlock}) => {
@@ -12,37 +14,53 @@ const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBl
 
     // Intro animation
     useEffect(() => {
-        if(isFirstRun) {
-        const tween = TweenLite.to(ref.current, 0.3, { opacity: 1, ease: Power2.easeInOut})
-        const otherTween = new TimelineLite()
-            .staggerTo(buttonRefs, 0.1, {top: 0, ease: Back.easeInOut.config(1.6)}, 0.1)
-            .play()
-            isFirstRun.current = false;
-        return
+        if(!isFirstRun.current) {
+            resetButtonPositions(buttonRefs)
         }
-        else {
-            // here you should set the position of the elemtns to required locations
-        }
+        if (isFirstRun) isFirstRun.current = false;
+
+        setClickBlock(true)
+        buttonIntro(ref, setClickBlock, buttonRefs)
+        
       }, [currentQuestionIndex]);
 
 
-    const setNext = (n) => {
+    const setNext = (n, clickedButtonRef) => {
         setClickBlock(true) // when animation begins, enable clickblock
-        const tween = TweenLite.to(ref.current, 0.3, {opacity: 0})
-        tween.eventCallback("onComplete", setNextQuestion, [n])
+        buttonClickAnimation(setNextQuestion, clickedButtonRef, ref, n)
     }
 
-    const checkClickBlock = (n) => {
+    const checkClickBlock = (n, clickedButtonRef) => {
         if (clickBlock) {
             return null
         }
         else {
-            setNext(n)
+            setNext(n, clickedButtonRef)
         }
     }
 
     const question = questions[currentQuestionIndex]
-    const buttons = question.answer_options.map((n, index) => <button ref={button => buttonRefs[index] = button} className={clickBlock ? 'question-button-nopointer' : 'question-button'} onClick={()=>checkClickBlock(n)} key={n.answer_id}>{n.answer_text}</button>)
+
+    // maps buttons 
+    const buttons = question.answer_options.map((n, index) => <div className='single-question-button-contain'><button 
+        ref={button => buttonRefs[index] = button} 
+        className={clickBlock ? 'question-button no-pointer' : 'question-button'} 
+        onClick={()=>checkClickBlock(n, buttonRefs[index])} 
+        key={n.answer_id}>
+            {n.answer_text}
+        </button></div>)
+
+    const ovalButtons = question.answer_options.map((n, index) => <div className='oval-question-button-contain'>
+        <svg height="100" width="200">
+    <ellipse cx="100" cy="50" rx="90" ry="40" style={{fill: "#ee936c"}}
+    ref={button => buttonRefs[index] = button} 
+    className={clickBlock ? 'question-button no-pointer' : 'question-button'} 
+    onClick={()=>checkClickBlock(n, buttonRefs[index])} 
+    key={n.answer_id}>
+    </ellipse>
+    <text x="50%" y="50%" text-anchor="middle" fill="black" font-size="14px" font-family="Arial" dy=".3em">{n.answer_text}</text>
+    </svg></div>)
+
 
     return (
         <div className='main-container'>

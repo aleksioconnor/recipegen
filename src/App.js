@@ -24,6 +24,8 @@ function App() {
     return _.shuffle(emptyArr)
   }
 
+
+
   // How many questions are shown to the user
   const [thisManyQuestions] = useState(4)
 
@@ -39,6 +41,7 @@ function App() {
 
 
   const setNextQuestion = (answer) => {
+    console.log("callback in setNextQuestion")
     const newTags = tags.slice(0)
     const answer_tag = answer.answer_tag
     newTags.push(answer_tag)

@@ -15,12 +15,18 @@ const RecipeView = (props) => {
 
     return (
     <div className='main-container'>
-        <div ref={containRef}>
-            <h1>Your recipe is: Hot dogs!</h1>
+        <div className='top-gradient'></div>
+        <div ref={containRef} className='recipe-contain'>
+            <h3>Make some:</h3>
+            <h1>Chicken stew with black beans and peppers</h1>
             <button onClick={()=>animateFunction(props.restart)}>restart</button>
             <button onClick={()=>animateFunction(props.goHome)}>Home page</button>
             <div>your tags: <Tags/>
             </div>
+        </div>
+        <div className='final-button-contain'>
+            <button className='final-button'>See full recipe</button>
+            <button className='final-button'>New suggestion</button>
         </div>
     </div>
     )
