@@ -1,6 +1,5 @@
 import React from 'react';
 import {useEffect, useRef, useState} from 'react';
-import {TweenLite, Power2, TimelineMax, TimelineLite, Back} from "gsap/TweenMax";
 import _ from 'lodash'
 import {buttonIntro, resetButtonPositions, buttonClickAnimation} from './animations'
 
@@ -8,7 +7,6 @@ import {buttonIntro, resetButtonPositions, buttonClickAnimation} from './animati
 const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBlock, setClickBlock}) => {
     // Set current question
     const ref = useRef(null);
-    const [anim, setAnim] = useState(null)
     const [buttonRefs, setButtonRefs] = useState([])
     const isFirstRun = useRef(true)
 

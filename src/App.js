@@ -10,10 +10,7 @@ import './Style.css'
 
 function App() {
 
-  // Function generates sequence of questions. Returns array of objects.
-  // Parameter (len) is how many questions will be in the resulting array.
-  // not being used
-  const generateRandomSequenceOfQuestions = (len) => _.shuffle(questionAnswerPairs).slice(0, len)
+
 
   const drawQuestion = (len) => {
     const emptyArr = []
@@ -73,7 +70,7 @@ function App() {
   return (
     <div>
         {landingPage ? <LandingPage clickBlock={clickBlock} setClickBlock={setClickBlock} start={start} selectedTags={selectedDietTags} setSelectedTags={setSelectedDietTags} tags={dietTags}/> : currentQuestionIndex > thisManyQuestions - 1 ? 
-        <RecipeView restart={restart} tags={tags} goHome={() => restartAndLandingPage()}></RecipeView> : 
+        <RecipeView selectedDietTags={selectedDietTags} restart={restart} tags={tags} goHome={() => restartAndLandingPage()}></RecipeView> : 
         <QuestionView clickBlock={clickBlock} setClickBlock={setClickBlock} currentQuestionIndex={currentQuestionIndex} setNextQuestion={setNextQuestion} questions={questions}></QuestionView>}
         
     </div>

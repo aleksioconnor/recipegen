@@ -1,4 +1,4 @@
-import {TweenLite, Power2, TimelineMax, TimelineLite, Back} from "gsap/TweenMax";
+import {TweenLite, Power2, TimelineLite, Back} from "gsap/TweenMax";
 
 const buttonIntro = (ref, setClickBlock, buttonRefs) => {
     const tween = TweenLite.to(ref.current, 0.3, { opacity: 1, ease: Power2.easeInOut})

@@ -24,10 +24,6 @@ const LandingPage = (props) => {
       }
     }
 
-const upUpAndAway = () => {
-
-}
-
 
   const flipCard = (reverse) => {
     props.setClickBlock(true)
