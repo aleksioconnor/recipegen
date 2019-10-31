@@ -1,31 +1,56 @@
 import React from 'react';
 import {useEffect, useRef, useState} from 'react';
 import _ from 'lodash'
-import {buttonIntro, resetButtonPositions, buttonClickAnimation} from './animations'
+import {buttonIntro, resetButtonPositions, buttonClickAnimation, fadeIn, ovalClickAnimation, resetOvalButtonPositions} from './animations'
+import QuestionButtons from './QuestionButtons'
 
 
 const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBlock, setClickBlock}) => {
     // Set current question
     const ref = useRef(null);
     const [buttonRefs, setButtonRefs] = useState([])
+    const [ovalButtonRefs, setOvalButtonRefs] = useState([])
+    const [ovalContainRefs, setOvalContainRefs] = useState([])
     const isFirstRun = useRef(true)
+    const [oval, setOval] = useState(true)
+    const question = questions[currentQuestionIndex]
 
     // Intro animation
     useEffect(() => {
+        // set prop
+        setOval((question.answer_options.map((n) => n.answer_text).reduce((r, e) => r.length < e.length ? e : r, "")).length > 15)
+
+        // if it is not the first run
         if(!isFirstRun.current) {
             resetButtonPositions(buttonRefs)
         }
+        resetOvalButtonPositions(ovalButtonRefs, ovalContainRefs)
+
+        // set first run false in case of first run
         if (isFirstRun) isFirstRun.current = false;
 
+        //enable blocking
         setClickBlock(true)
-        buttonIntro(ref, setClickBlock, buttonRefs)
+
+        // normal buttons
+        if(!oval) {
+            buttonIntro(ref, setClickBlock, buttonRefs)
+        }
+
+        //oval buttons
+        if(oval) {
+            fadeIn(ref, setClickBlock, ovalButtonRefs, ovalContainRefs)
+        }
         
-      }, [currentQuestionIndex]);
+      }, [buttonRefs, currentQuestionIndex, oval, ovalButtonRefs, ovalContainRefs, question.answer_options, setClickBlock]);
 
 
     const setNext = (n, clickedButtonRef) => {
         setClickBlock(true) // when animation begins, enable clickblock
-        buttonClickAnimation(setNextQuestion, clickedButtonRef, ref, n)
+        if(!oval) {
+            buttonClickAnimation(setNextQuestion, clickedButtonRef, ref, n)
+        }
+        else ovalClickAnimation(setNextQuestion, clickedButtonRef, ref, n)
     }
 
     const checkClickBlock = (n, clickedButtonRef) => {
@@ -37,27 +62,6 @@ const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBl
         }
     }
 
-    const question = questions[currentQuestionIndex]
-
-    // maps buttons 
-    const buttons = question.answer_options.map((n, index) => <div className='single-question-button-contain'><button 
-        ref={button => buttonRefs[index] = button} 
-        className={clickBlock ? 'question-button no-pointer' : 'question-button'} 
-        onClick={()=>checkClickBlock(n, buttonRefs[index])} 
-        key={n.answer_id}>
-            {n.answer_text}
-        </button></div>)
-
-    const ovalButtons = question.answer_options.map((n, index) => <div className='oval-question-button-contain'>
-        <svg height="100" width="200">
-    <ellipse cx="100" cy="50" rx="90" ry="40" style={{fill: "#ee936c"}}
-    ref={button => buttonRefs[index] = button} 
-    className={clickBlock ? 'question-button no-pointer' : 'question-button'} 
-    onClick={()=>checkClickBlock(n, buttonRefs[index])} 
-    key={n.answer_id}>
-    </ellipse>
-    <text x="50%" y="50%" text-anchor="middle" fill="black" font-size="14px" font-family="Arial" dy=".3em">{n.answer_text}</text>
-    </svg></div>)
 
 
     return (
@@ -65,7 +69,8 @@ const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBl
             <div ref={ref} className='question-contain'>
                 <h3 className='question-title'>{question.question_text}</h3>
                 <div className='question-button-container'>
-                    {buttons}
+                    <QuestionButtons ovalContainRefs={ovalContainRefs} clickBlock={clickBlock} checkClickBlock={checkClickBlock} setNext={setNext} buttonRefs={buttonRefs} ovalButtonRefs={ovalButtonRefs} question={question} 
+                    oval={oval}/>
                 </div>
             </div>
         </div>

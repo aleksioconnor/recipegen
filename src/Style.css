@@ -188,7 +188,7 @@ button {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    width: 270px;
+    width: 280px;
     padding: 5px;
 }
 
@@ -199,8 +199,8 @@ button {
 
 .question-button {
     position:relative;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     top: 800px;
     margin-bottom: 20px;
     background-color: #ee936d;
@@ -208,17 +208,33 @@ button {
     margin: 10px;
 }
 
+.ovalbutton {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+
+.ovaltext {
+    user-select: none;
+    cursor: pointer;
+    pointer-events: none;
+}
+
 .no-pointer{
-    cursor: default;
+    cursor: default !important;
 }
 
 .single-question-button-contain {
-    height: 120px;
-    width: 120px;
+    height: 140px;
+    width: 140px;
 }
 .oval-question-button-contain {
     height: 120px;
     width: 200px;
+    position: relative;
+    left: 50px;
 }
 
 
