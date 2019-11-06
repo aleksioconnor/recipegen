@@ -3,7 +3,7 @@ import _ from 'lodash'
 import {useEffect, useState, useRef} from 'react'
 import {TimelineLite} from 'gsap'
 
-const DietButtons = ({selectedTags, setSelectedTags, tags, buttonClicked, clickBlock}) => {
+const DietButtons = ({selectedTags, setSelectedTags, tags, buttonClicked, clickBlock, fadeIn, setFadeIn}) => {
 
   const [elements, setElements] = useState([])
   const isFirstRun = useRef(true);
@@ -35,16 +35,26 @@ const DietButtons = ({selectedTags, setSelectedTags, tags, buttonClicked, clickB
   }
     const myTween = new TimelineLite();
     myTween.staggerTo(elements, 0.1, {opacity: 0, visibility: 'hidden'}, 0.1);
-
     myTween.play()
-  }, [buttonClicked])
+  }, [buttonClicked, elements])
+
+  useEffect(() => {
+    if (fadeIn) {
+      const myTween = new TimelineLite();
+      myTween.to(elements, 0, {opacity: 0, visibility: 'hidden'}, 0);
+      myTween.to(elements, 0.8, {opacity: 1, visibility: 'visible', delay: 0.2});
+      myTween.play()
+      setFadeIn(false)
+
+    }
+  })
 
 
 
     const className = (dietn) => _.includes(selectedTags, dietn) ? 'diet-button--selected' : 'diet-button'
 
 
-    const buttons = tags.map((diet, index) => <button ref={button => elements[index] = button} key={diet} onClick={() => buttonClick(diet)} className={className(diet)}>{diet}</button>)
+    const buttons = tags.map((diet, index) => <button ref={button => elements[index] = button} key={diet} onClick={() => buttonClick(diet)} className={`${className(diet)} opacity`}>{diet}</button>)
   return (
     <div className='diet-button-container'>
       {buttons}

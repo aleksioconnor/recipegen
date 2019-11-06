@@ -17,16 +17,16 @@
     <svg key={n.answer_id + 10} height="100" width="200">
         <ellipse className={`ovalbutton ${clickBlock ? 'no-pointer' : ''}`} cx="100" cy="50" rx="100" ry="40" style={{fill: "#ee936c"} } key={n.answer_id + 20}
         ref={button => ovalButtonRefs[index] = button} 
-        onClick={()=>checkClickBlock(n, ovalButtonRefs[index])} >
+        onClick={()=>checkClickBlock(n, ovalButtonRefs[index], ovalContainRefs[index])} >
         </ellipse>
-        <text className={`ovaltext ${clickBlock ? 'no-pointer' : ''}`} x="50%" y="50%" textAnchor="middle" fill="black" fontSize="14px" fontFamily="Arial" dy=".3em" key={n.answer_id + 30}>{n.answer_text}</text>
+        <text className={`ovaltext ${clickBlock ? 'no-pointer' : ''}`} x="50%" y="50%" textAnchor="middle" fill="black" fontSize="15 px" fontFamily="Roboto" dy=".3em" key={n.answer_id + 30}>{n.answer_text}</text>
         </svg>
     </div>
 )
         return (
             <div>
                 <div style={oval ? {display: "block"} : {display: "none"}}>{ovalButtons}</div>
-                <div style={oval ? {display: "none"} : {display: "block"}}>{buttons}</div>
+                <div style={oval ? {display: "none"} : {display: "flex"}} className="question-button-container">{buttons}</div>
             </div>
         )
 

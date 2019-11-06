@@ -14,6 +14,8 @@ const LandingPage = (props) => {
     const [buttonClicked, setButtonClicked] = useState(false)
     const isFirstRun = useRef(true);
     const [animation, setAnimation] = useState(null)
+    const [fadeIn, setFadeIn] = useState(false)
+    const whatIsThisRef = useRef(null)
 
     const checkForClickBlock = () => {
       if(props.clickBlock) {
@@ -45,19 +47,35 @@ const LandingPage = (props) => {
     animation.reverse()
   }
 
+  const fadeInAnim = () => {
+    setFadeIn(true)
+    TweenLite.to(refButton.current, 0, { opacity: 0 })
+    TweenLite.to(refTitle.current, 0, { opacity: 0 })
+    TweenLite.to(refSub.current, 0, { opacity: 0 })
+    TweenLite.to(whatIsThisRef.current, 0, { opacity: 0 })
+    TweenLite.to(refButton.current, 0.8, { opacity: 1 , delay: 0.2})
+    TweenLite.to(refTitle.current, 0.8, { opacity: 1, delay: 0.2 })
+    TweenLite.to(refSub.current, 0.8, { opacity: 1, delay: 0.2 })
+    TweenLite.to(whatIsThisRef.current, 0.8, { opacity: 1, delay: 0.2 })
+  }
+
 
 
   useEffect(() => {
     if (isFirstRun.current) {
-        isFirstRun.current = false;
-        return;
+      fadeInAnim()
+      isFirstRun.current = false;
+      return;
     }
-    const tweenButton = TweenLite.to(refButton.current, 0.8, { opacity: 0 })
-    TweenLite.to(refTitle.current, 0.8, { opacity: 0 })
-    TweenLite.to(refSub.current, 0.8, { opacity: 0 })
+    if(buttonClicked) {
+      const tweenButton = TweenLite.to(refButton.current, 0.8, { opacity: 0 })
+      TweenLite.to(refTitle.current, 0.8, { opacity: 0 })
+      TweenLite.to(refSub.current, 0.8, { opacity: 0 })
+      TweenLite.to(whatIsThisRef.current, 0.8, { opacity: 0 })
 
-    tweenButton.eventCallback("onComplete", props.start)
-  }, [buttonClicked]);
+      tweenButton.eventCallback("onComplete", props.start)
+    }
+  }, [buttonClicked, props.start]);
 
 
   return (
@@ -72,12 +90,14 @@ const LandingPage = (props) => {
           <div onClick={()=>reverseCard()} >Back</div>
         </div>
         <div className='backOfCard card' ref={refFront}>
-          <img ref={refTitle} className='logo' src='/logo.png'></img>
-          <h5 ref={refSub}>
+          <img ref={refTitle} className='logo' src='/logo.png' alt='logo'></img>
+          <h5 className='opacity' ref={refSub}>
             Any preferences before we start?
           </h5>
           <DietButtons 
             clickBlock={props.clickBlock} 
+            fadeIn={fadeIn}
+            setFadeIn={setFadeIn}
             buttonClicked={buttonClicked} 
             selectedTags={props.selectedTags} 
             setSelectedTags={props.setSelectedTags} 
@@ -88,7 +108,7 @@ const LandingPage = (props) => {
             onClick={()=>checkForClickBlock() }>
               GO
             </button>
-          <div onClick={()=>flipCard(false)} className='help'>
+          <div onClick={()=>flipCard(false)} className='help' ref={whatIsThisRef}>
             What is this?
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import QuestionView from './QuestionView'
 import _ from 'lodash'
 import questionAnswerPairs from './questions'
@@ -7,9 +7,10 @@ import RecipeView from './RecipeView'
 import LandingPage from './LandingPage'
 import 'normalize.css';
 import './Style.css'
+import * as firebase from "firebase/app";
+import 'firebase/database'
 
 function App() {
-
 
 
   const drawQuestion = (len) => {
@@ -34,8 +35,21 @@ function App() {
 
   // used for diet seleciton in beginning
   const [selectedDietTags, setSelectedDietTags] = useState([])
-  const dietTags = ['Pescaterian', 'Dairy-free', 'Gluten-free', 'Vegan', 'Vegetarian']
+  const dietTags = ['pescatarian', 'DF', 'GF', 'vegan', 'vegetarian']
+  const [firebaseState, setFirebaseState] = useState(null)
 
+  useEffect(() => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyA8YvUHrQ46G-2AzTZ8FCcurpgwaGuj04g",
+      authDomain: "recipegen-fa395.firebaseapp.com",
+      databaseURL: "https://recipegen-fa395.firebaseio.com",
+      projectId: "recipegen-fa395",
+      storageBucket: "recipegen-fa395.appspot.com",
+    }
+
+    firebase.initializeApp(firebaseConfig);
+    setFirebaseState(firebase)
+  },[])
 
   const setNextQuestion = (answer) => {
     const newTags = tags.slice(0)
@@ -45,6 +59,7 @@ function App() {
     // add answer tag to tag array
     setCurrentQuestionIndex(currentQuestionIndex + 1)
     setClickBlock(false)
+    console.log(clickBlock, "value of block")
   }
 
   const restart = () => {
@@ -69,7 +84,7 @@ function App() {
   return (
     <div>
         {landingPage ? <LandingPage clickBlock={clickBlock} setClickBlock={setClickBlock} start={start} selectedTags={selectedDietTags} setSelectedTags={setSelectedDietTags} tags={dietTags}/> : currentQuestionIndex > thisManyQuestions - 1 ? 
-        <RecipeView selectedDietTags={selectedDietTags} restart={restart} tags={tags} goHome={() => restartAndLandingPage()}></RecipeView> : 
+        <RecipeView firebaseState={firebaseState} selectedDietTags={selectedDietTags} restart={restart} tags={tags} goHome={() => restartAndLandingPage()}></RecipeView> : 
         <QuestionView clickBlock={clickBlock} setClickBlock={setClickBlock} currentQuestionIndex={currentQuestionIndex} setNextQuestion={setNextQuestion} questions={questions}></QuestionView>}
         
     </div>
