@@ -19,7 +19,7 @@ const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBl
     useEffect(() => {
         console.log(clickBlock, "value of block")
         // set prop
-        setOval((question.answer_options.map((n) => n.answer_text).reduce((r, e) => r.length < e.length ? e : r, "")).length > 15)
+        setOval((question.answer_options.map((n) => n.answer_text).reduce((r, e) => r.length < e.length ? e : r, "")).length > 18)
 
         // if it is not the first run
         if(!isFirstRun.current) {
@@ -47,7 +47,7 @@ const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBl
 
 
     const setNext = (n, clickedButtonRef, contain) => {
-        setClickBlock(false) // when animation begins, enable clickblock // change
+        setClickBlock(true) // when animation begins, enable clickblock 
         if(!oval) {
             buttonClickAnimation(setNextQuestion, clickedButtonRef, ref, n)
         }

@@ -86,8 +86,10 @@ const LandingPage = (props) => {
       className='cards-container' 
       ref={refCard} >
         <div className='backOfCard card' ref={refBack}>
-          <h1>back of the card</h1>
-          <div onClick={()=>reverseCard()} >Back</div>
+          <h1 className='about-title'>About recipe generator</h1>
+          <p className='about'>Recipe Generator is a playful service that aims to provide recipe inspiration. The service suggests a recipe to the user based on a series of questions that must first be answered. The questions are presented through a simplified, easy-to-use, and visually attractive interface. Give it a try and find new and exciting recipes! </p>
+          <p className='about'>Created by: Maija Jääskeläinen, Aleksi O'Connor and Laura Toikka</p>
+          <button className='final-button' onClick={()=>reverseCard()} >Back</button>
         </div>
         <div className='backOfCard card' ref={refFront}>
           <img ref={refTitle} className='logo' src='/logo.png' alt='logo'></img>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { useRef, useEffect, useState } from 'react';
 import {TweenLite, Power2, TimelineLite} from "gsap/TweenMax";
-import * as firebase from "firebase/app";
-import 'firebase/database'
 import _ from 'lodash'
 
 
@@ -16,6 +14,7 @@ const RecipeView = (props) => {
     const DietTags = () => props.selectedDietTags.map(v => <div>{v}</div>)
     const [finalRecipes, setFinalRecipes] = useState([])
     const [finalRecipe, setFinalRecipe] = useState([])
+    const [showRecipe, setShowRecipe] = useState(false)
     const animateFunction = (func) => {
         const tween = TweenLite.to(containRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
         const tween1 = TweenLite.to(gradientRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
@@ -32,6 +31,7 @@ const RecipeView = (props) => {
           const recipeJson = asd.toJSON()
           let filteredRecipes = []
 
+          // this is so lazy but it works
           const sortTags = () => {
               let newArr = ["", "", "", ""]
               _.forEach(props.tags, (tag) => {
@@ -85,8 +85,6 @@ const RecipeView = (props) => {
 
       // ok now if final recipes is empty, lets lower priority
 
-      console.log(finalRecipes.length, "final recipes length with full filtering")
-      console.log(finalRecipes, "final recipes  with full filtering")
 
       if(finalRecipes.length < 1) {
           finalRecipes = []
@@ -102,9 +100,6 @@ const RecipeView = (props) => {
                 finalRecipes.push(recipe)
             }
         })
-        console.log(finalRecipes.length, "final recipes length with secondary filtering")
-        console.log(sortedTags, "current tags being applied")
-        console.log(finalRecipes, "final recipes with secondary filtering")
       }
 
 
@@ -122,9 +117,6 @@ const RecipeView = (props) => {
               finalRecipes.push(recipe)
           }
       })
-      console.log(finalRecipes.length, "final recipes length with third filtering")
-      console.log(sortedTags, "current tags being applied")
-      console.log(finalRecipes, "final recipes with third filtering")
     }
 
 
@@ -142,9 +134,6 @@ const RecipeView = (props) => {
               finalRecipes.push(recipe)
           }
       })
-      console.log(finalRecipes.length, "final recipes length with fourth filtering")
-      console.log(sortedTags, "current tags being applied")
-      console.log(finalRecipes, "final recipes with fourth filtering")
     }
 
 
@@ -186,6 +175,8 @@ const RecipeView = (props) => {
         return rand
     }
 
+
+
     return (
     <div className='main-container'>
         <div className='top-gradient opacity' ref={gradientRef}>
@@ -193,20 +184,24 @@ const RecipeView = (props) => {
         <div onClick={() => animateFunction(props.goHome)} className='home opacity' ref={homeRef}>Home</div>
         <div ref={containRef} className='recipe-contain opacity'>
             <h3 className='makesome'>Make some:</h3>
-            <h1 className='recipename'>{finalRecipe.name}</h1>
+            <h1 className='recipename'>{finalRecipe.length !== 0 ? finalRecipe.name : null}</h1>
+            <div className='time'>takes {finalRecipe.length !== 0 ? finalRecipe.time : null} to cook</div>
+            <div className='servings'>has {finalRecipe.length !== 0 ? finalRecipe.servings : null} servings</div>
             {/* <button onClick={()=>animateFunction(props.restart)}>restart</button>
             <button onClick={()=>animateFunction(props.goHome)}>Home page</button>
             <div>your tags: <Tags/>
             <DietTags />
             </div> */}
-                    <div className='final-img' style={{backgroundImage: `url(${background})`}}></div>
+        <div className='final-img' style={{backgroundImage: `url(${background})`}}></div>
         <div className='final-button-contain'>
-            <button className='final-button'>See full recipe</button>
+            {/* <button className='final-button' onClick={() => setShowRecipe(!showRecipe)}>See full recipe</button> */}
             {finalRecipes.length > 1 ? <button onClick={() => drawNewRecipe()}className='final-button'>New suggestion</button> : null}
         </div>
         <div className='recipe'>
-            <div className='time'>takes {finalRecipe.time} to cook</div>
-            <div className='servings'>has {finalRecipe.servings} servings</div>
+            <div className='ingredients-title'>Ingredients:</div>
+            <ul className='ingredients'>{finalRecipe.length !== 0 ? Object.keys(finalRecipe.ingredients).map((key) => <li>{'- ' + finalRecipe.ingredients[key]}</li>) : null}</ul>
+            <div className='instructions-title'>Instructions:</div>
+            <ul className='instructions'>{finalRecipe.length !== 0 ? Object.keys(finalRecipe.instructions).map((key) => <li>{Number(key)+1 + '. ' + finalRecipe.instructions[key]}</li>) : null}</ul>
         </div>
         </div>
 

@@ -14,8 +14,8 @@
     </button></div>)
 
     const ovalButtons = question.answer_options.map((n, index) => <div key={n.answer_id + 40} ref={n => ovalContainRefs[index] = n} className='oval-question-button-contain' style={{left: ((index+1)%2)===0 ? 30 : -30}}>
-    <svg key={n.answer_id + 10} height="100" width="200">
-        <ellipse className={`ovalbutton ${clickBlock ? 'no-pointer' : ''}`} cx="100" cy="50" rx="100" ry="40" style={{fill: "#ee936c"} } key={n.answer_id + 20}
+    <svg key={n.answer_id + 10} height="100" width="220">
+        <ellipse className={`ovalbutton ${clickBlock ? 'no-pointer' : ''}`} cx="110" cy="50" rx="110" ry="40" style={{fill: "#ee936c"} } key={n.answer_id + 20}
         ref={button => ovalButtonRefs[index] = button} 
         onClick={()=>checkClickBlock(n, ovalButtonRefs[index], ovalContainRefs[index])} >
         </ellipse>

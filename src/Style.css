@@ -69,7 +69,7 @@ h3 {
     padding-top: 50px;
     text-align: center;
     background-color: #b2d9eb;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Roboto'
 }
 
@@ -117,7 +117,7 @@ h3 {
     padding: 0;
     margin: 0;
     font-size: 25px;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     text-align: center;
     margin: 0 auto;
 }
@@ -127,7 +127,7 @@ h3 {
     background-size: cover;
     position: relative;
     margin: 0 auto;
-    top: 30px;
+    margin-top: 30px;
     background-position: center;
 }
 
@@ -137,7 +137,7 @@ h3 {
     align-items: center;
     flex-direction: column;
     position: relative;
-    top: 100px;
+    margin-top: 40px;
 }
 
 .main-container--landing-page {
@@ -305,4 +305,47 @@ button {
     bottom: 20px;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.recipe {
+    position: relative;
+    margin-top: 20px;
+}
+
+.recipe ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions-title {
+    font-size: 20px;
+}
+
+.ingredients {
+    margin-bottom: 30px;
+}
+
+.instructions {
+    margin-bottom: 50px;
+}
+
+.ingredients-title {
+    font-size: 20px;
+}
+
+.recipe li {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 10px;
+}
+
+.about-title {
+    margin-top: 30px;
+}
+
+.about {
+    padding-left: 60px;
+    padding-right: 60px;
+    line-height: 1.3em;
+    margin-bottom: 40px;
 }
