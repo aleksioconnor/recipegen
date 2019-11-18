@@ -49,12 +49,15 @@ const DietButtons = ({selectedTags, setSelectedTags, tags, buttonClicked, clickB
     }
   })
 
+  const ifDF = (diet) => {
+    return diet === 'DF' ? 'dairy-free' : diet === 'GF' ? 'gluten-free' : diet
+  } 
 
 
     const className = (dietn) => _.includes(selectedTags, dietn) ? 'diet-button--selected' : 'diet-button'
 
 
-    const buttons = tags.map((diet, index) => <button ref={button => elements[index] = button} key={diet} onClick={() => buttonClick(diet)} className={`${className(diet)} opacity`}>{diet}</button>)
+    const buttons = tags.map((diet, index) => <button ref={button => elements[index] = button} key={diet} onClick={() => buttonClick(diet)} className={`${className(diet)} opacity`}>{ifDF(diet)}</button>)
   return (
     <div className='diet-button-container'>
       {buttons}

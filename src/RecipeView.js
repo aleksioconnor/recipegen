@@ -13,8 +13,9 @@ const RecipeView = (props) => {
     const Tags = () => props.tags.map(v => <div>{v}</div>)
     const DietTags = () => props.selectedDietTags.map(v => <div>{v}</div>)
     const [finalRecipes, setFinalRecipes] = useState([])
+    const [likes, setLikes] = useState(0)
+    const [clicked, setClicked] = useState(false)
     const [finalRecipe, setFinalRecipe] = useState([])
-    const [showRecipe, setShowRecipe] = useState(false)
     const animateFunction = (func) => {
         const tween = TweenLite.to(containRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
         const tween1 = TweenLite.to(gradientRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
@@ -148,6 +149,7 @@ const RecipeView = (props) => {
     }, [])
 
     const drawNewRecipe = () => {
+        setClicked(false)
         const generateRandom = (min, max) => {
             const notThisOne = _.findIndex(finalRecipes, (n) => n === finalRecipe)
             var num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -168,13 +170,16 @@ const RecipeView = (props) => {
         introAnimation();
     },[])
 
-    const background = '/food.png'
 
-    const randomRecipe = () => {
-        const rand = finalRecipes[Math.floor(Math.random() * finalRecipes.length)];
-        return rand
+    const likeRecipe = async () => {
+        await props.firebaseState.database().ref("/recipes/").orderByChild('id').equalTo(finalRecipe.id).on("child_added", (snapshot) => {
+            props.firebaseState.database().ref("/recipes/"+snapshot.key).update({likes: finalRecipe.likes + 1})
+        })
+        setFinalRecipe(Object.assign(finalRecipe, {likes: finalRecipe.likes + 1}))
+        setClicked(true)
+        setLikes(finalRecipe.likes)
+       
     }
-
 
 
     return (
@@ -187,12 +192,11 @@ const RecipeView = (props) => {
             <h1 className='recipename'>{finalRecipe.length !== 0 ? finalRecipe.name : null}</h1>
             <div className='time'>takes {finalRecipe.length !== 0 ? finalRecipe.time : null} to cook</div>
             <div className='servings'>has {finalRecipe.length !== 0 ? finalRecipe.servings : null} servings</div>
-            {/* <button onClick={()=>animateFunction(props.restart)}>restart</button>
-            <button onClick={()=>animateFunction(props.goHome)}>Home page</button>
-            <div>your tags: <Tags/>
-            <DietTags />
-            </div> */}
-        <div className='final-img' style={{backgroundImage: `url(${background})`}}></div>
+        <div className='final-img' style={{backgroundImage: `url(${finalRecipe.img})`}}></div>
+        <div className='likes'>
+            This recipe has {clicked ? likes : finalRecipe.likes} likes
+            <div className='likebutton' onClick={()=>likeRecipe()} >Click to like</div>
+        </div>
         <div className='final-button-contain'>
             {/* <button className='final-button' onClick={() => setShowRecipe(!showRecipe)}>See full recipe</button> */}
             {finalRecipes.length > 1 ? <button onClick={() => drawNewRecipe()}className='final-button'>New suggestion</button> : null}
