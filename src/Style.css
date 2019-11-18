@@ -43,7 +43,7 @@ h3 {
 /* danger */
 #root { 
     background-color: #b1d9eb;
-    background-image: url('/banana.png');
+    background-image: url('/recipegen/banana.png');
     background-repeat: repeat;
     background-size: 84px;
 

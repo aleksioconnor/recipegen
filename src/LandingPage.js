@@ -92,7 +92,7 @@ const LandingPage = (props) => {
           <button className='final-button' onClick={()=>reverseCard()} >Back</button>
         </div>
         <div className='backOfCard card' ref={refFront}>
-          <img ref={refTitle} className='logo' src='/logo.png' alt='logo'></img>
+          <img ref={refTitle} className='logo' src='recipegen/logo.png' alt='logo'></img>
           <h5 className='opacity' ref={refSub}>
             Any preferences before we start?
           </h5>

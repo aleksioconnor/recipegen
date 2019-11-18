@@ -192,7 +192,7 @@ const RecipeView = (props) => {
             <h1 className='recipename'>{finalRecipe.length !== 0 ? finalRecipe.name : null}</h1>
             <div className='time'>takes {finalRecipe.length !== 0 ? finalRecipe.time : null} to cook</div>
             <div className='servings'>has {finalRecipe.length !== 0 ? finalRecipe.servings : null} servings</div>
-        <div className='final-img' style={{backgroundImage: `url(${finalRecipe.img})`}}></div>
+        <div className='final-img' style={{backgroundImage: `url(/recipegen/${finalRecipe.img})`}}></div>
         <div className='likes'>
             This recipe has {clicked ? likes : finalRecipe.likes} likes
             <div className='likebutton' onClick={()=>likeRecipe()} >Click to like</div>
