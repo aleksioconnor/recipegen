@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/recipegen/static/css/main.e618a5dd.chunk.css",
+    "main.css": "/recipegen/static/css/main.b1156ba3.chunk.css",
     "main.js": "/recipegen/static/js/main.1459460f.chunk.js",
     "main.js.map": "/recipegen/static/js/main.1459460f.chunk.js.map",
     "runtime-main.js": "/recipegen/static/js/runtime-main.49701214.js",
@@ -9,16 +9,16 @@
     "static/js/2.ae84fe66.chunk.js": "/recipegen/static/js/2.ae84fe66.chunk.js",
     "static/js/2.ae84fe66.chunk.js.map": "/recipegen/static/js/2.ae84fe66.chunk.js.map",
     "index.html": "/recipegen/index.html",
-    "precache-manifest.cfd48bd7057a91d80e26610c35b6dd44.js": "/recipegen/precache-manifest.cfd48bd7057a91d80e26610c35b6dd44.js",
+    "precache-manifest.ac07037787c15f173cbda2641ec9cbb7.js": "/recipegen/precache-manifest.ac07037787c15f173cbda2641ec9cbb7.js",
     "service-worker.js": "/recipegen/service-worker.js",
     "static/css/2.764ccc25.chunk.css.map": "/recipegen/static/css/2.764ccc25.chunk.css.map",
-    "static/css/main.e618a5dd.chunk.css.map": "/recipegen/static/css/main.e618a5dd.chunk.css.map"
+    "static/css/main.b1156ba3.chunk.css.map": "/recipegen/static/css/main.b1156ba3.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.49701214.js",
     "static/css/2.764ccc25.chunk.css",
     "static/js/2.ae84fe66.chunk.js",
-    "static/css/main.e618a5dd.chunk.css",
+    "static/css/main.b1156ba3.chunk.css",
     "static/js/main.1459460f.chunk.js"
   ]
 }
