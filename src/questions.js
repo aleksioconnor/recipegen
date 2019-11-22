@@ -49,7 +49,7 @@ const questionAnswerPairs =
 	            answer_tag_category: "difficulty",
 	            answer_tag: "simple"
 	          },
-	          { answer_text: "A messy kitchen is a happy kitchen",
+	          { answer_text: "My kitchen my rules",
 	            answer_id: 3,
 	            answer_tag_category: "difficulty",
 	            answer_tag: "time-consuming"

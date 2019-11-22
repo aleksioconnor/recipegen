@@ -1,6 +1,5 @@
 
     import React from 'react';
-    import {useEffect, useRef, useState} from 'react';
 
     const QuestionButtons = ({oval, question, clickBlock, checkClickBlock, buttonRefs, ovalButtonRefs, ovalContainRefs}) => {
 

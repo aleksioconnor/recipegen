@@ -10,16 +10,14 @@ const RecipeView = (props) => {
     const containRef = useRef(null)
     const gradientRef = useRef(null)
     const homeRef = useRef(null)
-    const Tags = () => props.tags.map(v => <div>{v}</div>)
-    const DietTags = () => props.selectedDietTags.map(v => <div>{v}</div>)
     const [finalRecipes, setFinalRecipes] = useState([])
     const [likes, setLikes] = useState(0)
     const [clicked, setClicked] = useState(false)
     const [finalRecipe, setFinalRecipe] = useState([])
     const animateFunction = (func) => {
         const tween = TweenLite.to(containRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
-        const tween1 = TweenLite.to(gradientRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
-        const tween2 = TweenLite.to(homeRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
+        TweenLite.to(gradientRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
+        TweenLite.to(homeRef.current, 1, { opacity: 0, ease: Power2.easeInOut})
         tween.eventCallback("onComplete", func)
 
     }

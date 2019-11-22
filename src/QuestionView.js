@@ -1,6 +1,5 @@
 import React from 'react';
 import {useEffect, useRef, useState} from 'react';
-import _ from 'lodash'
 import {buttonIntro, resetButtonPositions, buttonClickAnimation, fadeIn, ovalClickAnimation, resetOvalButtonPositions} from './animations'
 import QuestionButtons from './QuestionButtons'
 
@@ -17,7 +16,6 @@ const QuestionView = ({currentQuestionIndex, setNextQuestion, questions, clickBl
 
     // Intro animation
     useEffect(() => {
-        console.log(clickBlock, "value of block")
         // set prop
         setOval((question.answer_options.map((n) => n.answer_text).reduce((r, e) => r.length < e.length ? e : r, "")).length > 18)
 

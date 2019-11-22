@@ -59,7 +59,6 @@ function App() {
     // add answer tag to tag array
     setCurrentQuestionIndex(currentQuestionIndex + 1)
     setClickBlock(false)
-    console.log(clickBlock, "value of block")
   }
 
   const restart = () => {

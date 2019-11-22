@@ -2,14 +2,14 @@ import {TweenLite, Power2, TimelineLite, Back} from "gsap/TweenMax";
 import _ from 'lodash'
 
 const buttonIntro = (ref, setClickBlock, buttonRefs) => {
-    const tween = TweenLite.to(ref.current, 0.3, { opacity: 1, ease: Power2.easeInOut})
-    const otherTween = new TimelineLite({onComplete: setClickBlock, onCompleteParams: [false]})
+    TweenLite.to(ref.current, 0.3, { opacity: 1, ease: Power2.easeInOut})
+    new TimelineLite({onComplete: setClickBlock, onCompleteParams: [false]})
         .staggerTo(buttonRefs, 0.9, {top: 0, ease: Back.easeInOut.config(0.7)}, 0.2)
 }
 
 
 const fadeIn = (ref, setClickBlock, buttonRefs, ovalContainRefs) => { // oval intro
-    const tweenfs = TweenLite.to(ref.current, 0.01, { opacity: 1, ease: Power2.easeInOut})
+    TweenLite.to(ref.current, 0.01, { opacity: 1, ease: Power2.easeInOut})
     const tweenfsd = TweenLite.to(ref.current, 1, { opacity: 1, ease: Power2.easeInOut})
     tweenfsd.eventCallback("onComplete", setClickBlock, [false])
 
